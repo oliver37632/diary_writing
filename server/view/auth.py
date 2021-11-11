@@ -1,6 +1,6 @@
 from flask import request
 from flask_restful import Resource
-from sevar.contorller.auth import sigup, login
+from server.contorller.auth import sigup, login
 
 
 class SigUp(Resource):

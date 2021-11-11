@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_jwt_extended import JWTManager
-
-from router import bp
+from server.router import bp
 
 
 def create_app():

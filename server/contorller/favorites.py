@@ -1,5 +1,5 @@
-from sevar.model import session_scope
-from sevar.model.post import Post
+from server.model import session_scope
+from server.model.post import Post
 
 
 def favorites(id, token):

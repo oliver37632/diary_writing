@@ -1,6 +1,6 @@
 from sqlalchemy import Column, VARCHAR, Integer, DATETIME, text, ForeignKey, Boolean
 
-from sevar.model import Base
+from server.model import Base
 
 
 class Post(Base):

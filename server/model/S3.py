@@ -1,5 +1,5 @@
 import boto3
-from sevar.config import AWS_S3_BUCKET_REGION, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY
+from server.config import AWS_S3_BUCKET_REGION, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY
 
 
 def s3_connection():

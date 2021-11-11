@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request
 from flask_jwt_extended import jwt_required
-from sevar.contorller.poto import upload, download
+from server.contorller.poto import upload, download
 
 
 class Upload(Resource):
