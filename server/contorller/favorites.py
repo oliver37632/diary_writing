@@ -1,13 +1,14 @@
 from server.model import session_scope
 from server.model.post import Post
+from server.model.user import User
+from flask import abort
 
 
 def favorites(id, token):
     with session_scope() as session:
-        post = session.query(Post).filter(Post.id_pk == id).first()
-
+        post = session.query(Post).filter(Post.user_nick == token).first()
         if post:
-            post = session.query(Post).filter(Post.user_nick == token).first()
+            post = session.query(Post).filter(Post.id_pk == id).first()
             if post:
                 if post.Favorites == 1:
                     post.Favorites = 0
@@ -20,8 +21,32 @@ def favorites(id, token):
                         "message": "Favorites True"
                     }, 200
             return {
-                "msg": "not nick match"
+                    "msg": "not id match"
             }, 404
         return {
-                   "msg": "not id match"
+                   "msg": "not nick match"
                }, 404
+
+
+def ck_favorites():
+    with session_scope() as session:
+        posts = session.query(
+            Post.id_pk,
+            Post.title,
+            Post.content,
+            Post.url,
+            User.nick
+        ).join(User, User.nick == Post.user_nick).filter(Post.Favorites == 1)
+
+        if posts:
+            return {
+                       "posts": [{
+                           "id_pk": id_pk,
+                           "title": title,
+                           "content": content,
+                           "url": url,
+                           "nick": nick
+                       } for id_pk, title, content, url, nick in posts]
+                   }, 200
+
+        return abort("Not Found", 404)

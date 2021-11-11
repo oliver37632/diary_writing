@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from server.contorller.favorites import favorites
+from server.contorller.favorites import favorites, ck_favorites
 
 
 class Favorites(Resource):
@@ -11,3 +11,9 @@ class Favorites(Resource):
             id=id,
             token=token
         )
+
+
+class CkFavorites(Resource):
+    @jwt_required()
+    def get(self):
+        return ck_favorites()

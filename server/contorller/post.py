@@ -16,7 +16,7 @@ def post(title, content, inherence, nick):
             content=content,
             inherence=inherence,
             created_at=datetime.now(),
-            Favorites=False,
+            Favorites=0,
             user_nick=nick
         )
 
@@ -36,6 +36,8 @@ def post_get(inherence):
             Post.content,
             Post.created_at,
             Post.inherence,
+            Post.Favorites,
+            Post.url,
             User.nick
         ).join(User, User.nick == Post.user_nick).filter(Post.inherence == inherence)
 
@@ -48,7 +50,7 @@ def post_get(inherence):
                            "content": content,
                            "created_at": str(created_at),
                            "nick": nick
-                       } for id_pk, title, content, created_at, inherence, nick in posts]
+                       } for id_pk, title, content, created_at, inherence, Favorites, nick in posts]
                    }, 200
 
         return abort("Not Found", 404)
@@ -79,7 +81,7 @@ def post_update(id, title, content, token):
 
             return {
                        "msg": "success"
-                   },200
+                   },201
 
         return {
             'message': 'Error'

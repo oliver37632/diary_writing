@@ -31,4 +31,7 @@ api_basic.add_resource(Download, "/poto")
 from server.view.favorites import Favorites
 api_basic.add_resource(Favorites, "/Favorites/<int:id>")
 
+from server.view.favorites import CkFavorites
+api_basic.add_resource(CkFavorites, "/Favorites")
+
 
