@@ -3,7 +3,7 @@ from flask import request
 
 from flask_jwt_extended import get_jwt_identity, jwt_required
 
-from contorller.post import post_get, post_delete, post_update, post
+from sevar.contorller.post import post_get, post_delete, post_update, post
 
 
 class Post(Resource):

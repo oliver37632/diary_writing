@@ -1,5 +1,5 @@
-from app import create_app
-from config import secret
+from sevar.app import create_app
+from sevar.config import secret
 
 if __name__ == "__main__":
     app = create_app()

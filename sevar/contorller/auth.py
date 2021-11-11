@@ -1,6 +1,6 @@
-from model import session_scope
+from sevar.model import session_scope
 from flask import abort
-from model.user import User
+from sevar.model.user import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import timedelta
 from flask_jwt_extended import create_access_token, create_refresh_token

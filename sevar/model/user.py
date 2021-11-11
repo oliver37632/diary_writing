@@ -1,7 +1,7 @@
-from sqlalchemy import Column, VARCHAR, text
+from sqlalchemy import Column, VARCHAR
 from sqlalchemy.orm import relationship
 
-from model import Base
+from sevar.model import Base
 
 
 class User(Base):

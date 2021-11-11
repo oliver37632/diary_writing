@@ -1,7 +1,6 @@
-from sqlalchemy.orm import relationship
 from sqlalchemy import Column, VARCHAR, Integer, DATETIME, text, ForeignKey, Boolean
 
-from model import Base
+from sevar.model import Base
 
 
 class Post(Base):

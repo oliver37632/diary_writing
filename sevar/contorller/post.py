@@ -1,6 +1,6 @@
-from model import session_scope
-from model.post import Post
-from model.user import User
+from sevar.model import session_scope
+from sevar.model.post import Post
+from sevar.model.user import User
 
 
 from datetime import datetime

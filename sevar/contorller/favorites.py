@@ -1,7 +1,5 @@
-from model import session_scope
-from model.post import Post
-
-from flask import abort
+from sevar.model import session_scope
+from sevar.model.post import Post
 
 
 def favorites(id, token):

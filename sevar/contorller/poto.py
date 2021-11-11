@@ -1,8 +1,8 @@
-from model.S3 import s3_connection, s3_put_object
-from model import session_scope
-from model.post import Post
+from sevar.model.S3 import s3_connection, s3_put_object
+from sevar.model import session_scope
+from sevar.model.post import Post
 
-from config import AWS_S3_BUCKET_NAME
+from sevar.config import AWS_S3_BUCKET_NAME
 
 from flask import request, abort
 
