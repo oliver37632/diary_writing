@@ -13,12 +13,12 @@ def favorites(id, token):
                 if post.Favorites == 1:
                     post.Favorites = 0
                     return {
-                        "message": "Favorites False"
+                        "msg": False
                     }, 200
                 else:
                     post.Favorites = 1
                     return {
-                        "message": "Favorites True"
+                        "message": True
                     }, 200
             return {
                     "msg": "not id match"
@@ -34,8 +34,7 @@ def ck_favorites():
             Post.id_pk,
             Post.title,
             Post.content,
-            Post.url,
-            User.nick
+            Post.url
         ).join(User, User.nick == Post.user_nick).filter(Post.Favorites == 1)
 
         if posts:
@@ -44,9 +43,8 @@ def ck_favorites():
                            "id_pk": id_pk,
                            "title": title,
                            "content": content,
-                           "url": url,
-                           "nick": nick
-                       } for id_pk, title, content, url, nick in posts]
+                           "url": url
+                       } for id_pk, title, content, url in posts]
                    }, 200
 
         return abort("Not Found", 404)
