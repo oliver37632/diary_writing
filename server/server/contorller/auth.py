@@ -9,17 +9,23 @@ from flask_jwt_extended import create_access_token, create_refresh_token
 def sigup(nick, name, password):
     with session_scope() as session:
 
-        new_sigup = User(
-            nick=nick,
-            name=name,
-            password=generate_password_hash(password)
-        )
-        session.add(new_sigup)
-        session.commit()
+        user = session.query(User).filter(User.nick == nick).first()
 
+        if user:
+            new_sigup = User(
+                nick=nick,
+                name=name,
+                password=generate_password_hash(password)
+            )
+            session.add(new_sigup)
+            session.commit()
+
+            return {
+                       "message": "success"
+                   }, 201
         return {
-                   "message": "success"
-               }, 201
+            "message": "nick overlap"
+        }, 409
 
 
 def login(nick, password):
