@@ -6,6 +6,7 @@ from server.model.user import User
 
 
 class SigUp(Resource):
+    @validate_JSON(User)
     def post(self):
         nick = request.json['nick']
         name = request.json['name']
@@ -19,6 +20,7 @@ class SigUp(Resource):
 
 
 class Login(Resource):
+    @validate_JSON(User)
     def post(self):
         nick = request.json['nick']
         password = request.json['password']
