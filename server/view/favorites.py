@@ -6,7 +6,6 @@ from server.model.post import Post
 
 
 class Favorites(Resource):
-    @validate_JSON(Post)
     @jwt_required()
     def post(self, id):
         token = get_jwt_identity()
@@ -17,13 +16,11 @@ class Favorites(Resource):
 
 
 class CkFavorites(Resource):
-    @jwt_required()
     def get(self):
         return ck_favorites()
 
 
 class DeleteFavorites(Resource):
-    @jwt_required()
     def delete(self, id):
         token = get_jwt_identity()
         return delete_favorites(

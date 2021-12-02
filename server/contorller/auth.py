@@ -9,7 +9,6 @@ from flask_jwt_extended import create_access_token, create_refresh_token
 def sigup(nick, name, password):
     with session_scope() as session:
 
-        user = session.query(User).filter(User.nick == nick).first()
 
         if user:
             new_sigup = User(
