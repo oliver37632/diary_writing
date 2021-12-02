@@ -14,3 +14,6 @@ AWS_S3_BUCKET_NAME = "grambook"
 # }
 #
 # MYSQL_DB_URL = f"mysql+mysqldb://{db['user']}:{db['password']}@{db['host']}:{db['port']}/{db['database']}?charset=utf8"
+
+#mysql+pymysql://root:oliver37632@gram1project.ceqksrdsuysx.ap-northeast-2.rds.amazonaws.com:3306/DiaryWriting_db?charset=utf8
+# "mysql+pymysql://root:oliver37632@localhost:3306/DiaryWriting_db?charset=utf8"

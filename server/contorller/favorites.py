@@ -48,3 +48,27 @@ def ck_favorites():
                    }, 200
 
         return abort("Not Found", 404)
+
+
+def delete_favorites(id ,token):
+    with session_scope() as session:
+        post = session.query(User).filter(User.nick == token).first()
+
+        if not post:
+            return {
+                       "message": "user id not match"
+                   }, 400
+
+        post = session.query(Post).filter(Post.id_pk == id).first()
+
+        if not post:
+            return {
+                "message": "Not Fuond"
+            }, 404
+
+        session.delete(post)
+        session.commit()
+
+        return {
+            "message": "success"
+        }, 200

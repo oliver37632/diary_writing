@@ -5,8 +5,12 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 
 from server.contorller.post import post_get, post_delete, post_update, post
 
+from server.model.post import Post
+from server.view import validate_JSON
+
 
 class Post(Resource):
+    @validate_JSON(Post)
     @jwt_required()
     def post(self):
         title = request.json['title']
@@ -25,7 +29,7 @@ class GetPost(Resource):
     @jwt_required()
     def get(self):
 
-        inherence = request.json['inherence']
+        inherence = request.args.get('inherence')
 
         return post_get(
             inherence=inherence
@@ -43,6 +47,7 @@ class DeletePost(Resource):
 
 
 class UpdatePost(Resource):
+    @validate_JSON(Post)
     @jwt_required()
     def patch(self, id):
         title = request.json["title"]

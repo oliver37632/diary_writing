@@ -10,6 +10,9 @@ api_basic.add_resource(Login, "/login")
 from server.view.auth import SigUp
 api_basic.add_resource(SigUp, "/signup")
 
+from server.view.auth import Id_Check
+api_basic.add_resource(Id_Check, "/auth")
+
 from server.view.post import Post
 api_basic.add_resource(Post, "/post")
 
@@ -33,5 +36,8 @@ api_basic.add_resource(Favorites, "/Favorites/<int:id>")
 
 from server.view.favorites import CkFavorites
 api_basic.add_resource(CkFavorites, "/Favorites")
+
+from server.view.favorites import DeleteFavorites
+api_basic.add_resource(DeleteFavorites, "/Favorites/<int:id>")
 
 

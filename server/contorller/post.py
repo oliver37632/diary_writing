@@ -49,8 +49,10 @@ def post_get(inherence):
                            "title": title,
                            "content": content,
                            "created_at": str(created_at),
-                           "nick": nick
-                       } for id_pk, title, content, created_at, inherence, Favorites, nick in posts]
+                           "nick": nick,
+                           "url": url,
+                            "Favorites": Favorites
+                       } for id_pk, title, content, created_at, inherence, Favorites, url, nick in posts]
                    }, 200
 
         return abort("Not Found", 404)
@@ -80,7 +82,7 @@ def post_update(id, title, content, token):
             post.content = content
 
             return {
-                       "msg": "success"
+                       "message": "success"
                    },201
 
         return {
