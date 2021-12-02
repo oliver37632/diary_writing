@@ -1,6 +1,6 @@
 from flask import request
 from flask_restful import Resource
-from server.contorller.auth import sigup, login, id_overlap_check
+from server.contorller.auth import signup, login, id_overlap_check
 
 
 class SignUp(Resource):
