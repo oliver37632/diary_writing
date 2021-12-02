@@ -7,8 +7,8 @@ api_basic = Api(bp)
 from server.view.auth import Login
 api_basic.add_resource(Login, "/login")
 
-from server.view.auth import SigUp
-api_basic.add_resource(SigUp, "/signup")
+from server.view.auth import SignUp
+api_basic.add_resource(SignUp, "/signup")
 
 from server.view.auth import Id_Check
 api_basic.add_resource(Id_Check, "/auth")
