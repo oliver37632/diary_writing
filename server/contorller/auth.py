@@ -6,11 +6,9 @@ from datetime import timedelta
 from flask_jwt_extended import create_access_token, create_refresh_token
 
 
-def sigup(nick, name, password):
+def signup(nick, name, password):
     with session_scope() as session:
 
-
-        if user:
             new_sigup = User(
                 nick=nick,
                 name=name,
@@ -22,9 +20,7 @@ def sigup(nick, name, password):
             return {
                        "message": "success"
                    }, 201
-        return {
-            "message": "nick overlap"
-        }, 409
+
 
 
 def login(nick, password):

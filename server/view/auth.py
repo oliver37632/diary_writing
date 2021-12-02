@@ -1,17 +1,15 @@
 from flask import request
 from flask_restful import Resource
 from server.contorller.auth import sigup, login, id_overlap_check
-from server.view import validate_JSON
-from server.model.user import User
 
 
-class SigUp(Resource):
+class SignUp(Resource):
     def post(self):
         nick = request.json['nick']
         name = request.json['name']
         password = request.json['password']
 
-        return sigup(
+        return signup(
                 nick=nick,
                 name=name,
                 password=password
