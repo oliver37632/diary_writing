@@ -20,7 +20,6 @@ class SigUp(Resource):
 
 
 class Login(Resource):
-    @validate_JSON(User)
     def post(self):
         nick = request.json['nick']
         password = request.json['password']
@@ -32,7 +31,6 @@ class Login(Resource):
 
 
 class Id_Check(Resource):
-    @validate_JSON(User)
     def post(self):
         nick = request.json['nick']
 
