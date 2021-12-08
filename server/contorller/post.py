@@ -60,17 +60,22 @@ def post_get(inherence):
 
 def post_delete(id, token):
     with session_scope() as session:
-        post_del = session.query(Post).filter(Post.user_nick == token, Post.id_pk == id).first()
+        post_del = session.query(Post).filter(Post.user_nick == token).first()
 
         if post_del:
-            session.delete(post_del)
-            session.commit()
-            return {
-                       "message": "success"
-                   }, 200
+            post_del = session.query(Post).filter(Post.id_pk == id).first()
+
+            if post_del:
+                session.delete(post_del)
+                session.commit
+
+                return {
+                    "message": "success"
+                },200
+            else: return {"message": "inherence not match"}, 404
         return {
-                   "massage": "NotFound"
-               }, 404
+                   "message": "token not match"
+               }, 401
 
 
 def post_update(id, title, content, token):

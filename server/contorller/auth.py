@@ -1,14 +1,15 @@
 from server.model import session_scope
 from flask import abort
-from server.model.user import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import timedelta
 from flask_jwt_extended import create_access_token, create_refresh_token
+from server.model.user import User
 
 
 def signup(nick, name, password):
     with session_scope() as session:
-
+        user = session.query(User).filter(User.nick == nick).first()
+        if user:
             new_sigup = User(
                 nick=nick,
                 name=name,
@@ -20,6 +21,9 @@ def signup(nick, name, password):
             return {
                        "message": "success"
                    }, 201
+        return {
+            "message": "overlap"
+        }, 403
 
 
 
