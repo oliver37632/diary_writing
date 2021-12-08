@@ -9,7 +9,7 @@ from server.model.user import User
 def signup(nick, name, password):
     with session_scope() as session:
         user = session.query(User).filter(User.nick == nick).first()
-        if user not:
+        if not user:
             new_sigup = User(
                 nick=nick,
                 name=name,
