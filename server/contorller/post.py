@@ -63,7 +63,7 @@ def post_delete(id, token):
         post_del = session.query(Post).filter(Post.user_nick == token).first()
 
         if post_del:
-            post_del = session.query(Post).filter(Post.id_pk == id).first()
+            post_del = session.query(Post).filter(Post.inherence == id).first()
 
             if post_del:
                 session.delete(post_del)
