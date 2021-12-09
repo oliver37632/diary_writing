@@ -16,11 +16,13 @@ class Favorites(Resource):
 
 
 class CkFavorites(Resource):
+    @jwt_required()
     def get(self):
         return ck_favorites()
 
 
 class DeleteFavorites(Resource):
+    @jwt_required()
     def delete(self, id):
         token = get_jwt_identity()
         return delete_favorites(
