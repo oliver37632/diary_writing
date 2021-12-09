@@ -26,7 +26,8 @@ def upload(name, inherence):
                 return {
                            "message": "success"
                        }, 201
-            return abort(404, "Not Found")
+            else:
+                return abort(404, "Not Found")
 
         return {
                    "message": "Error"
