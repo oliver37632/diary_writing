@@ -66,9 +66,11 @@ def delete_favorites(id ,token):
                 "message": "Not Fuond"
             }, 404
 
-        session.delete(post)
-        session.commit()
+        if post.Favorites == 1:
+            post.Favorites = 0
 
         return {
             "message": "success"
         }, 200
+
+        return {"message": "error"}, 400
