@@ -15,13 +15,11 @@ def upload(name, inherence):
         f.save("./temp")
         ret = s3_put_object(s3, AWS_S3_BUCKET_NAME, "./temp", name)
         if ret:
-
-            location = s3.get_bucket_location(Bucket=AWS_S3_BUCKET_NAME)['LocationConstraint']
-            image_url = f'https://{AWS_S3_BUCKET_NAME}.s3.{location}.amazonaws.com/{name}'
-
             post = session.query(Post).filter(Post.inherence == inherence).first()
 
             if post:
+                location = s3.get_bucket_location(Bucket=AWS_S3_BUCKET_NAME)['LocationConstraint']
+                image_url = f'https://{AWS_S3_BUCKET_NAME}.s3.{location}.amazonaws.com/{name}'
                 post.url = image_url
                 return {
                            "message": "success"
