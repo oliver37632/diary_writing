@@ -9,27 +9,30 @@ from flask import request, abort
 s3 = s3_connection()
 
 
-def upload(name, inherence):
+def upload(inherence):
     with session_scope() as session:
-        f = request.files['file']
-        f.save("./temp")
-        ret = s3_put_object(s3, AWS_S3_BUCKET_NAME, "./temp", name)
-        if ret:
-            post = session.query(Post).filter(Post.inherence == inherence).first()
+        num = 0
+        file = request.files.getlist["file[]"]
+        for f in file:
+            name = "photo" + num+1
+            f.save("./temp")
+            ret = s3_put_object(s3, AWS_S3_BUCKET_NAME, "./temp", name)
+            if ret:
+                post = session.query(Post).filter(Post.inherence == inherence).first()
 
-            if post:
-                location = s3.get_bucket_location(Bucket=AWS_S3_BUCKET_NAME)['LocationConstraint']
-                image_url = f'https://{AWS_S3_BUCKET_NAME}.s3.{location}.amazonaws.com/{name}'
-                post.url = image_url
-                return {
-                           "message": "success"
-                       }, 201
-            else:
-                return abort(404, "Not Found")
+                if post:
+                    location = s3.get_bucket_location(Bucket=AWS_S3_BUCKET_NAME)['LocationConstraint']
+                    image_url = f'https://{AWS_S3_BUCKET_NAME}.s3.{location}.amazonaws.com/{name}'
+                    post.url = image_url
+                    return {
+                               "message": "success"
+                           }, 201
+                else:
+                    return abort(404, "Not Found")
 
-        return {
-                   "message": "Error"
-               }, 400
+            return {
+                       "message": "Error"
+                   }, 400
 
 
 def download(inherence):

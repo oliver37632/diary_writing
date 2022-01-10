@@ -7,11 +7,9 @@ from server.contorller.poto import upload, download
 class Upload(Resource):
     @jwt_required()
     def post(self):
-        name = request.args.get("name")
         inherence = request.args.get("inherence")
 
         return upload(
-            name=name,
             inherence=inherence
         )
 
