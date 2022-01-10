@@ -12,7 +12,7 @@ s3 = s3_connection()
 def upload(inherence):
     with session_scope() as session:
         num = 0
-        file = request.files.getlist["file[]"]
+        file = request.files.getlist("file[]")
         for f in file:
             name = "photo" + num+1
             f.save("./temp")
